@@ -1,0 +1,25 @@
+import java.io.*;
+import java.net.*;
+
+    public class NameResolution {
+
+        public static void main(String args[]) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Enter the website URL (like google.com) to Resolve its IP:");
+
+            String name = br.readLine();
+
+            try {
+                InetAddress ip = InetAddress.getByName(name);
+                InetAddress[] ips = InetAddress.getAllByName(name);
+
+                System.out.println("Host Address:");
+                for (InetAddress ipAddress : ips) {
+                    System.out.println(ipAddress.getHostAddress());
+                }
+            } catch (UnknownHostException e) {
+                System.out.println("No such host is present.");
+                System.out.println("\nTry Again...");
+            }
+        }
+    }
